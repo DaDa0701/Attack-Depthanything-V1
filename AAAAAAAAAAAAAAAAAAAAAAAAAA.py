@@ -39,6 +39,8 @@ import sys
 
 
 
+
+
 # 这里是系统有多卡的时候的配置代码，我们单卡直接运行会导致显卡分配出错
 # os.environ["CUDA_VISIBLE_DEVICES"] = '5'
 # fixme
