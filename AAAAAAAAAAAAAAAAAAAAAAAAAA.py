@@ -175,7 +175,7 @@ def attack(args):
 
     encoder = 'vitb'  # or 'vitb', 'vits'
     depth_anything = DepthAnything(model_configs[encoder]).to(args.device0).eval()
-    depth_anything.load_state_dict(torch.load(f'./checkpoints/depth_anything_{encoder}14.pth'))
+    depth_anything.load_state_dict(torch.load(f'../checkpoints/depth_anything_{encoder}14.pth'))
     # 计算并输出模型的总参数数量，以百万（M）为单位。为了衡量模型的大小和潜在的计算成本
     total_params = sum(param.numel() for param in depth_anything.parameters())
     print('Total parameters: {:.2f}M'.format(total_params / 1e6))
@@ -442,18 +442,18 @@ def attack(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--camou_mask", type=str, default='./data/car/mask.jpg', help="camouflage texture mask")  # 伪装纹理掩码路径
+    parser.add_argument("--camou_mask", type=str, default='../data/car/mask.jpg', help="camouflage texture mask")  # 伪装纹理掩码路径
     parser.add_argument("--camou_shape", type=int, default=1024, help="shape of camouflage texture")  # 伪装纹理的形状，默认1024
-    parser.add_argument("--obj_name", type=str, default='./data/car/lexus_hs.obj')  # 3D 模型文件路径,
+    parser.add_argument("--obj_name", type=str, default='../data/car/lexus_hs.obj')  # 3D 模型文件路径,
     parser.add_argument("--device0", type=str, default="cuda:1", help="Device for Model 强壮.")
     parser.add_argument("--device1", type=str, default="cuda:0", help="Device for Model 弱鸡.")
-    parser.add_argument("--train_dir", type=str, default='/data/mde_carla_rgb/')  # 训练数据目录，默认地址是dffault
+    parser.add_argument("--train_dir", type=str, default='../data/mde_carla_rgb/')  # 训练数据目录，默认地址是dffault
     parser.add_argument("--img_size", type=int, nargs=2, default=(320, 1024))  # 图像大小,nargs允许用户在命令行中传递两个整数作为图像的尺寸（高度和宽度）
     parser.add_argument("--batch_size", type=int,default=1)  # 批量大小，默认值为 4， 这里的default数字是batch的大小（也就是同时处理样本的数量），如果跑的过程中发生了out of memory的报错，把这个调小，只能再减小成2或者1了
     parser.add_argument("--lr", type=float, default=0.01)  # 学习率，默认值为 0.01
-    parser.add_argument("--log_dir", type=str, default='./log_dir')  # 日志目录地址，默认值地址为(保存生成的纹理)
+    parser.add_argument("--log_dir", type=str, default='./Texture')  # 日志目录地址，默认值地址为(保存生成的纹理)
     parser.add_argument('--outdir', type=str, default='./results/vib_depth')#保存当前生成的深度结果图像
-    parser.add_argument('--encoder', type=str, default='vitl', choices=['vits', 'vitb', 'vitl'])
+    parser.add_argument('--encoder', type=str, default='vitb', choices=['vits', 'vitb', 'vitl'])
     parser.add_argument('--pred-only', dest='pred_only', action='store_true', help='only display the prediction')
     parser.add_argument('--grayscale', dest='grayscale', action='store_true', help='do not apply colorful palette')
     args = parser.parse_args()

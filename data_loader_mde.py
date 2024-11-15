@@ -39,10 +39,10 @@ class MyDataset(Dataset):
         self.tex_trans_flag = tex_trans_flag #纹理转换标志，表示是否需要对纹理进行转换。
         self.phy_trans_flag = phy_trans_flag #物理转换标志，表示是否需要物理转换。
         self.data_dir = data_dir + 'rgb/'
-        test_path = r".\data\ann.pkl"#用于保存数据集注释的 .pkl 文件路径。通过 pickle.load 加载注释。
+        test_path = r"..\data\ann.pkl"#用于保存数据集注释的 .pkl 文件路径。通过 pickle.load 加载注释。
         with open(test_path, 'rb') as ann_file:
             self.ann = pickle.load(ann_file)#从文件中加载注释数据，存储在 self.ann 中
-        self.files = os.listdir('./data/mde_carla_rgb')
+        self.files = os.listdir('../data/mde_carla_rgb')
         print('dataset length: ', len(self.files))
 
         #将图像尺寸 img_size 和设备 device 保存为类的属性，供后续使用。
@@ -439,7 +439,7 @@ class MyDataset(Dataset):
 
         # loading background image sampling from Carla simulator
         #加载背景图像
-        file_path = os.path.join(r".\data\mde_carla_rgb", self.files[index])
+        file_path = os.path.join(r"..\data\mde_carla_rgb", self.files[index])
         # file_path = '/data/zjh/mde_carla/rgb/Town04_w2_0l_cam2.jpg'
         img = cv2.imread(file_path)  # [640, 1600, 3] BGR
         img = img[40:-100, :, ::-1]  # [500, 1600, 3] RGB
@@ -487,7 +487,7 @@ if __name__ == '__main__':
     camou_para1 = expand_kernel(camou_para.permute(0, 3, 1, 2)).permute(0, 2, 3, 1)
     camou_para1 = torch.clamp(camou_para1, 0, 1)
 
-    data_dir = '/data/zjh/mde_carla/'
+    data_dir = '../data/zjh/mde_carla/'
     img_size = (320, 1024)
     
     dataset = MyDataset(data_dir, img_size, obj_name, camou_mask, device=device, phy_trans_flag=True)
