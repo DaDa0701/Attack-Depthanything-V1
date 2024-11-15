@@ -18,9 +18,6 @@ from depth_anything.dpt import DPT_DINOv2
 from depth_anything.util.transform import Resize, NormalizeImage, PrepareForNet
 from depth_anything.dpt import DepthAnything
 from depth_anything.blocks import FeatureFusionBlock, _make_scratch
-
-
-
 from pytorch3d.io import load_objs_as_meshes, load_obj
 from pytorch3d.renderer import (
     look_at_view_transform,
@@ -36,10 +33,11 @@ from pytorch3d.renderer import (
     TexturesUV,
     materials
 )
-
-
 from data_loader_mde import MyDataset
 import sys
+
+
+
 
 # 这里是系统有多卡的时候的配置代码，我们单卡直接运行会导致显卡分配出错
 # os.environ["CUDA_VISIBLE_DEVICES"] = '5'
