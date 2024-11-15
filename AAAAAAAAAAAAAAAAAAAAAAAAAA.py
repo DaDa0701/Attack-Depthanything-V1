@@ -44,6 +44,8 @@ os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
 
+
+
 # 深度学习模型包装类。接收一个编码器和解码器，用于处理输入图像，最终输出深度图 (disp)。
 class DepthModelWrapper(torch.nn.Module):
     def __init__(self, encoder, decoder) -> None:
