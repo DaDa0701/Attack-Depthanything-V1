@@ -20,10 +20,6 @@ from depth_anything.dpt import DepthAnything
 from depth_anything.blocks import FeatureFusionBlock, _make_scratch
 
 
-
-
-
-
 from pytorch3d.io import load_objs_as_meshes, load_obj
 from pytorch3d.renderer import (
     look_at_view_transform,
