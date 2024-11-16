@@ -12,7 +12,7 @@ from depth_anything.util.transform import Resize, NormalizeImage, PrepareForNet
 
 
 if __name__ == '__main__':
-    model = torch.load(".checkpoints/depth_anything_vitl14.pth")
+    model = torch.load("..checkpoints/depth_anything_vitl14.pth")
     for k, v in model.items():
         print(k)
         
